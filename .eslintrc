@@ -1,0 +1,93 @@
+{
+  "parser": "babel-eslint",
+  "root": true,
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended"
+  ],
+  "settings": {
+    "import/core-modules": [
+      "gatsby"
+    ],
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "./src"
+        ]
+      },
+      "alias": [
+        [
+          "Root",
+          "./src"
+        ]
+      ]
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "graphql": true
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "semi": [
+      2,
+      "never"
+    ],
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": true,
+        "variables": true
+      }
+    ],
+    "no-shadow": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "jsx-a11y/anchor-is-valid": [
+      2,
+      {
+        "components": [
+          "Link"
+        ],
+        "specialLink": [
+          "to"
+        ],
+        "aspects": [
+          "noHref",
+          "invalidHref",
+          "preferButton"
+        ]
+      }
+    ],
+    "react/jsx-one-expression-per-line": 0,
+    "react/jsx-wrap-multilines": [
+      1,
+      {
+        "prop": "ignore"
+      }
+    ],
+    "max-len": 0,
+    "react/no-unescaped-entities": 0,
+    "react/require-default-props": 0,
+    "import/prefer-default-export": 0,
+    "lines-between-class-members": 0,
+    "comma-dangle": 0,
+    "no-confusing-arrow": 0,
+    "react/destructuring-assignment": 0,
+    "object-curly-newline": 0,
+    "react/forbid-prop-types": 0,
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off"
+  }
+}
