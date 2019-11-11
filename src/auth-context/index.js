@@ -1,6 +1,5 @@
 import React, { Component, createContext } from 'react'
 import PropTypes from 'prop-types'
-// import { PostToServer } from 'services/auth-service'
 
 const { Provider, Consumer: AuthServiceConsumer } = createContext()
 
@@ -10,13 +9,8 @@ class AuthServiceProvider extends Component {
   state = {
     currentUser: false,
   }
-  // post = new PostToServer()
 
   componentDidMount() {
-    // const storage = window.localStorage
-    // const user = storage.getItem('login')
-    // this.setState({ currentUser: user })
-    // this.setState({ currentUser: null })
     this.setState({ currentUser: null })
   }
 

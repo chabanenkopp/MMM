@@ -19,12 +19,9 @@ const WeekButtons = styled(Flex)`
   justify-content: space-around;
   align-items: center;
   background-color: ${transparentize(0.15, COLORS.WHITE)};
-  margin: 0 auto;
-  padding-top: ${pxToRem(10)};
-  padding-bottom: ${pxToRem(10)};
-  padding-right: ${pxToRem(20)};
-  padding-left: ${pxToRem(20)};
   border-radius: ${radius.xl};
+  margin: 0 auto;
+  padding: ${pxToRem(10)} ${pxToRem(20)} ${pxToRem(10)} ${pxToRem(20)};
 `
 
 const DayWrapper = styled.div`

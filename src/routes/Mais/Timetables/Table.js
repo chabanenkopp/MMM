@@ -12,28 +12,18 @@ const Table = styled(Flex)`
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  border-bottom-left-radius: ${radius.l};
-  border-bottom-right-radius: ${radius.l};
-  box-shadow: rgba(0, 0, 0, 0.08) 0px 20px 40px 5px;
+  border-radius: 0 0 ${radius.l} ${radius.l};
+  box-shadow: rgba(0, 0, 0, 0.08) 0 ${pxToRem(20)} ${pxToRem(40)} ${pxToRem(5)};
 `
 
 const Row = styled(Flex)`
   width: 100%;
-  padding-top: ${pxToRem(10)};
-  padding-bottom: ${pxToRem(10)};
-  padding-right: ${pxToRem(20)};
-  padding-left: ${pxToRem(20)};
+  padding: ${pxToRem(10)} ${pxToRem(20)} ${pxToRem(10)} ${pxToRem(20)};
   ${({ lastElement }) =>
-    lastElement &&
-    `border-bottom-left-radius: ${radius.l};
-     border-bottom-right-radius: ${radius.l};
-    `}
+    lastElement && `border-radius: 0 0 ${radius.l} ${radius.l};`}
     color: ${COLORS.LEAD};
   ${({ firstElement }) =>
-    firstElement &&
-    `border-top-left-radius: ${radius.l};
-     border-top-right-radius: ${radius.l};
-    `}
+    firstElement && `border-radius: ${radius.l} ${radius.l} 0 0;`}
     color: ${COLORS.LEAD};
 `
 
@@ -42,7 +32,7 @@ const TableLesson = ({ start, end, description }) => {
   return (
     <Box px="m">
       <Table
-        width={[pxToRem(320), 'unset', pxToRem(420)]}
+        width={[pxToRem(320), 'unset', pxToRem(400)]}
         maxWidth={pxToRem(400)}
       >
         <Row firstElement bg={transparentize(0.1, COLORS.WHITE)}>
