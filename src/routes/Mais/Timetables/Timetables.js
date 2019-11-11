@@ -59,6 +59,7 @@ const SETTINGS = {
 class Timetables extends Component {
   state = {
     data: null,
+    activeSlideIndex: 0,
     isLoading: true,
   }
   post = new PostToServer()
@@ -83,7 +84,7 @@ class Timetables extends Component {
     this.slider.slickGoTo(value)
   }
   render() {
-    const { isLoading, data } = this.state
+    const { isLoading, activeSlideIndex, data } = this.state
     if (isLoading)
       return (
         <Flex justifyContent="center" alignItems="center" height="100vh">
@@ -102,7 +103,11 @@ class Timetables extends Component {
                 textAlign="center"
                 fontSize="xl"
                 fontWeight="semi_bold"
-                color={COLORS.MYTHICAL_ORANGE}
+                color={
+                  activeSlideIndex === i
+                    ? COLORS.ANCHORMAN
+                    : COLORS.MYTHICAL_ORANGE
+                }
               >
                 {day}
               </Text>
@@ -113,7 +118,11 @@ class Timetables extends Component {
               textAlign="center"
               fontSize="xl"
               fontWeight="semi_bold"
-              color={COLORS.MYTHICAL_ORANGE}
+              color={
+                activeSlideIndex === 4
+                  ? COLORS.ANCHORMAN
+                  : COLORS.MYTHICAL_ORANGE
+              }
             >
               FR
             </Text>
@@ -123,6 +132,9 @@ class Timetables extends Component {
           <SlickSlider
             ref={(slider) => {
               this.slider = slider
+            }}
+            beforeChange={(current, next) => {
+              this.setState({ activeSlideIndex: next })
             }}
             {...SETTINGS}
           >
