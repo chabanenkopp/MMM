@@ -1,5 +1,5 @@
 import React from 'react'
-import { MaisTimetableServiceConsumer } from 'mais-timetable-service-context'
+import { MaisTimetableServiceConsumer } from 'contexts/mais-timetable-service-context'
 
 const withMaisTimetableService = (Wrapped) => (props) => {
   return (

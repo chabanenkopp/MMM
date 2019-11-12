@@ -1,5 +1,5 @@
 import React from 'react'
-import { CheckUserServiceConsumer } from 'check-user-service-context'
+import { CheckUserServiceConsumer } from 'contexts/check-user-service-context'
 
 const withCheckUserService = (Wrapped) => (props) => (
   <CheckUserServiceConsumer>
