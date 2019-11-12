@@ -6,6 +6,10 @@ import { theme, globalStyles } from 'Theme'
 import { PATHS, COLORS } from 'constant'
 import { Flex } from 'components/atoms/Layout'
 import AuthServiceProvider, { AuthServiceConsumer } from 'auth-context'
+import { MaisTimetableServiceProvider } from 'mais-timetable-service-context'
+import { CheckUserServiceProvider } from 'check-user-service-context'
+import { MaisTimetableService } from 'services/mais-service'
+import { AuthService } from 'services/auth-service'
 import LoginPage from 'routes/LoginPage'
 import Mais from 'routes/Mais'
 import Moodle from 'routes/Moodle'
@@ -24,66 +28,73 @@ const AnimationWrapper = styled(Flex)`
   );
 `
 
+const maisTimetableService = new MaisTimetableService()
+const authService = new AuthService()
+
 const App = () => (
   <ThemeProvider theme={theme}>
     <AuthServiceProvider>
-      <AuthServiceConsumer>
-        {({ currentUser }) => {
-          if (currentUser === false)
-            return (
-              <React.Fragment>
-                <GlobalStyles />
-                <AnimationWrapper
-                  justifyContent="center"
-                  alignItems="center"
-                  minHeight="100vh"
-                  minWidth="100%"
-                >
-                  <img src={loading} alt="loading" />
-                </AnimationWrapper>
-              </React.Fragment>
-            )
-          return (
-            <React.Fragment>
-              <Helmet>
-                <link
-                  href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:500,600,700&display=swap"
-                  rel="stylesheet"
-                />
-                {/* <link rel="icon" href={favicon} /> */}
-              </Helmet>
-              <GlobalStyles />
-              {currentUser === null ? (
-                <Switch>
-                  <Route path={LOGIN} component={LoginPage} />
-                </Switch>
-              ) : (
-                <Switch>
-                  <Route
-                    path={MAIS}
-                    render={({ match }) => {
-                      return <Mais path={match.path} />
-                    }}
-                  />
-                  <Route
-                    path={MOODLE}
-                    render={({ match }) => {
-                      return <Moodle path={match.path} />
-                    }}
-                  />
-                  <Route
-                    path={MAIL}
-                    render={({ match }) => {
-                      return <Mail path={match.path} />
-                    }}
-                  />
-                  <Route component={LoginPage} />
-                </Switch>
-              )}
-            </React.Fragment>
-          )
-        }}
-      </AuthServiceConsumer>
+      <CheckUserServiceProvider value={authService}>
+        <MaisTimetableServiceProvider value={maisTimetableService}>
+          <AuthServiceConsumer>
+            {({ currentUser }) => {
+              if (currentUser === false)
+                return (
+                  <React.Fragment>
+                    <GlobalStyles />
+                    <AnimationWrapper
+                      justifyContent="center"
+                      alignItems="center"
+                      minHeight="100vh"
+                      minWidth="100%"
+                    >
+                      <img src={loading} alt="loading" />
+                    </AnimationWrapper>
+                  </React.Fragment>
+                )
+              return (
+                <React.Fragment>
+                  <Helmet>
+                    <link
+                      href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:500,600,700&display=swap"
+                      rel="stylesheet"
+                    />
+                    {/* <link rel="icon" href={favicon} /> */}
+                  </Helmet>
+                  <GlobalStyles />
+                  {currentUser === null ? (
+                    <Switch>
+                      <Route path={LOGIN} component={LoginPage} />
+                    </Switch>
+                  ) : (
+                    <Switch>
+                      <Route
+                        path={MAIS}
+                        render={({ match }) => {
+                          return <Mais path={match.path} />
+                        }}
+                      />
+                      <Route
+                        path={MOODLE}
+                        render={({ match }) => {
+                          return <Moodle path={match.path} />
+                        }}
+                      />
+                      <Route
+                        path={MAIL}
+                        render={({ match }) => {
+                          return <Mail path={match.path} />
+                        }}
+                      />
+                      <Route component={LoginPage} />
+                    </Switch>
+                  )}
+                </React.Fragment>
+              )
+            }}
+          </AuthServiceConsumer>
+        </MaisTimetableServiceProvider>
+      </CheckUserServiceProvider>
     </AuthServiceProvider>
   </ThemeProvider>
 )

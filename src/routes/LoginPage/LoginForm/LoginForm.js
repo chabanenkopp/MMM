@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import withAuthService from 'hoc/withAuthService'
+import withCheckUserService from 'hoc/withCheckUserService'
+import compose from 'utils'
 import { Box, Flex } from 'components/atoms/Layout'
 import { radius } from 'Theme'
 import { COLORS } from 'constant'
 import { pxToRem } from 'helpers'
-import { PostToServer } from 'services/auth-service'
 import Input from 'components/atoms/Input'
 import Button from 'components/atoms/Button'
 
@@ -23,15 +24,18 @@ const initialState = {
 
 class LoginForm extends Component {
   state = initialState
-  post = new PostToServer()
   handleSubmitForm = (e) => {
     e.preventDefault()
     const { login, password } = this.state
-    const { allowAccess, setLoading, destroySession } = this.props
+    const {
+      allowAccess,
+      setLoading,
+      destroySession,
+      authService: { checkUser },
+    } = this.props
     if (login !== '' && password !== '') {
       setLoading()
-      this.post
-        .checkUser({ login, password })
+      checkUser({ login, password })
         .then((resp) => {
           if (resp.exists) {
             const storage = window.localStorage
@@ -100,6 +104,7 @@ LoginForm.propTypes = {
   allowAccess: PropTypes.func,
   setLoading: PropTypes.func,
   destroySession: PropTypes.func,
+  authService: PropTypes.object,
 }
 
-export default withAuthService(LoginForm)
+export default compose(withAuthService, withCheckUserService)(LoginForm)

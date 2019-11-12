@@ -1,6 +1,6 @@
 /* eslint-disable no-return-await */
 /* eslint-disable no-underscore-dangle */
-class PostToServer {
+class AuthService {
   _apiBase = 'http://34.65.172.206/api/user'
 
   postData = async (url, data) => {
@@ -18,4 +18,4 @@ class PostToServer {
   checkUser = async (data) => await this.postData('/check_user', data)
 }
 
-export { PostToServer }
+export { AuthService }

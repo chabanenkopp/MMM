@@ -17,14 +17,14 @@ const Table = styled(Flex)`
 `
 
 const Row = styled(Flex)`
-  width: 100%;
-  padding: ${pxToRem(10)} ${pxToRem(20)} ${pxToRem(10)} ${pxToRem(20)};
   ${({ lastElement }) =>
     lastElement && `border-radius: 0 0 ${radius.l} ${radius.l};`}
     color: ${COLORS.LEAD};
   ${({ firstElement }) =>
     firstElement && `border-radius: ${radius.l} ${radius.l} 0 0;`}
     color: ${COLORS.LEAD};
+  width: 100%;
+  padding: ${pxToRem(10)} ${pxToRem(20)} ${pxToRem(10)} ${pxToRem(20)};
 `
 
 const TableLesson = ({ start, end, description }) => {

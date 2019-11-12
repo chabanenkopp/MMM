@@ -5,13 +5,14 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Slider from 'react-slick'
 import { transparentize } from 'polished'
+import withAuthService from 'hoc/withAuthService'
+import withMaisTimetableService from 'hoc/withMaisTimetableService'
+import compose from 'utils'
 import { radius } from 'Theme'
 import { COLORS } from 'constant'
 import { pxToRem } from 'helpers'
 import { Box, Flex } from 'components/atoms/Layout'
 import { Text } from 'components/atoms/Typography'
-import { PostToServer } from 'services/mais-service'
-import withAuthService from 'hoc/withAuthService'
 import animationLoading from 'assets/images/loading.svg'
 import TableLesson from './Table'
 
@@ -59,13 +60,14 @@ class Timetables extends Component {
     activeSlideIndex: 0,
     isLoading: true,
   }
-  post = new PostToServer()
   componentDidMount() {
+    const {
+      maisTimetableService: { getTableData },
+    } = this.props
     const storage = window.localStorage
     const login = storage.getItem('login')
     const password = storage.getItem('password')
-    this.post
-      .getTableData({ login, password })
+    getTableData({ login, password })
       .then((resp) => {
         this.setState({ isLoading: false, data: resp })
       })
@@ -167,6 +169,7 @@ class Timetables extends Component {
 
 Timetables.propTypes = {
   setLoading: PropTypes.func,
+  maisTimetableService: PropTypes.object,
 }
 
-export default withAuthService(Timetables)
+export default compose(withAuthService, withMaisTimetableService)(Timetables)

@@ -1,6 +1,6 @@
 /* eslint-disable no-return-await */
 /* eslint-disable no-underscore-dangle */
-class PostToServer {
+class MaisTimetableService {
   _apiBase = 'http://34.65.172.206/api'
 
   postData = async (url, data) => {
@@ -18,4 +18,4 @@ class PostToServer {
   getTableData = async (data) => await this.postData('/scrap/', data)
 }
 
-export { PostToServer }
+export { MaisTimetableService }
