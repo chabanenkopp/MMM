@@ -23,11 +23,12 @@ const WeekButtons = styled(Flex)`
   border-radius: ${radius.xl};
   margin: 0 auto;
   padding: ${pxToRem(10)} ${pxToRem(20)} ${pxToRem(10)} ${pxToRem(20)};
+  box-shadow: 0 ${pxToRem(6)} ${pxToRem(28)} 0 rgba(24, 52, 117, 0.2);
 `
 
 const DayWrapper = styled.div`
   flex: 1;
-  border-right: 1px solid ${transparentize(0.3, COLORS.MYTHICAL_ORANGE)};
+  border-right: 1px solid ${transparentize(0.3, COLORS.PERCEPTIBLE_AT_A_GLANCE)};
 `
 
 const SliderWrapper = styled.div`
@@ -105,7 +106,7 @@ class Timetables extends Component {
                 color={
                   activeSlideIndex === i
                     ? COLORS.ANCHORMAN
-                    : COLORS.MYTHICAL_ORANGE
+                    : COLORS.PERCEPTIBLE_AT_A_GLANCE
                 }
               >
                 {day}
@@ -120,7 +121,7 @@ class Timetables extends Component {
               color={
                 activeSlideIndex === 4
                   ? COLORS.ANCHORMAN
-                  : COLORS.MYTHICAL_ORANGE
+                  : COLORS.PERCEPTIBLE_AT_A_GLANCE
               }
             >
               FR

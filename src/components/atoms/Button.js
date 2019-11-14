@@ -65,6 +65,7 @@ const Filled = styled(ButtonBase)`
   ${({ borderRadius }) => `border-radius: ${borderRadius}`}
   ${buttonFuncs};
   transition: background-color 0.5s;
+  border: 1px solid ${COLORS.LUXURY};
   :hover {
     background-color: ${COLORS.BUTTERSCOTCH};
   }

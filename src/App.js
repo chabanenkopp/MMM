@@ -22,10 +22,7 @@ const GlobalStyles = createGlobalStyle`
   ${globalStyles}
 `
 const AnimationWrapper = styled(Flex)`
-  background-image: linear-gradient(
-    ${COLORS.MYTHICAL_ORANGE},
-    ${COLORS.MELLOW_MELON}
-  );
+  background-color: ${COLORS.DEUTUZIA_WHITE};
 `
 
 const maisTimetableService = new MaisTimetableService()

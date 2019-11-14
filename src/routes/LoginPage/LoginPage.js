@@ -13,13 +13,14 @@ const { MAIS } = PATHS
 const GradientWrapper = styled.div`
   height: 100vh;
   width: 100%;
-  background-image: linear-gradient(
+  background-color: ${COLORS.DEUTUZIA_WHITE};
+  /* background-image: linear-gradient(
     ${COLORS.MYTHICAL_ORANGE},
     ${COLORS.MELLOW_MELON}
-  );
+  ); */
 `
 
-const LoginForwContainer = styled(Flex)`
+const LoginFormContainer = styled(Flex)`
   justify-content: center;
   position: absolute;
   left: 50%;
@@ -34,10 +35,10 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <GradientWrapper height="100vh" width="100%">
-        <LoginForwContainer>
+      <GradientWrapper>
+        <LoginFormContainer>
           <LoginForm />
-        </LoginForwContainer>
+        </LoginFormContainer>
       </GradientWrapper>
     )
   }

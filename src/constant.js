@@ -34,7 +34,12 @@ export const COLORS = {
   MELLOW_MELON: '#f4326e',
   STRAWBERRY_SMASH: '#f5145a',
   HIBISCUS_DELIGHT: '#fe9873',
+  GUIDING_STAR: '#ffeadb',
+  CIRCUS: '#ff6332',
+  DEUTUZIA_WHITE: '#f7fbfc',
   WHITE_SMOKE: 'whitesmoke',
+  PERCEPTIBLE_AT_A_GLANCE: '#22bef0',
+  PERCEPTIBLE_THROUGH_CLOSE_OBSERVATION: '#7adcec',
 }
 
 export const PATHS = {

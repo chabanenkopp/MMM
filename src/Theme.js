@@ -71,8 +71,8 @@ export const globalStyles = css`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: auto;
     min-width: 320px;
-    margin: 0;
     border: 0;
+    margin: 0;
   }
 `
 

@@ -9,6 +9,12 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.example.cordovareactapp"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.example.cordovareactapp"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.example.cordovareactapp"
     }
   },
   "dependent_plugins": {}

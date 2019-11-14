@@ -7,10 +7,7 @@ import Timetables from './Timetables'
 
 const GradientWrapper = styled.div`
   min-height: 100vh;
-  background-image: linear-gradient(
-    ${COLORS.MYTHICAL_ORANGE},
-    ${COLORS.MELLOW_MELON}
-  );
+  background-color: ${COLORS.DEUTUZIA_WHITE};
 `
 
 const Mais = ({ path }) => (
