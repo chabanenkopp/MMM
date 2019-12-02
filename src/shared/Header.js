@@ -43,7 +43,7 @@ const Header = ({ path }) => {
     <Box
       position="absolute"
       width="100%"
-      bottom="0.1%"
+      bottom="1.8%"
       minHeight={pxToRem(55)}
       zIndex="1"
     >

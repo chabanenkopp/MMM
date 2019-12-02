@@ -14,20 +14,21 @@ const Input = styled.input`
   color: ${COLORS.STRAWBERRY_SMASH};
   font-size: 16px;
   display: block;
+  border: 1px solid ${COLORS.MELLOW_MELON};
   background-color: ${({ isValid }) =>
     isValid
       ? transparentize(0.35, COLORS.WHITE)
       : transparentize(0.1, COLORS.RED_ORANGE_JUICE)};
   :focus {
-    border-color: ${COLORS.MELLOW_MELON};
     outline: none;
+    border-color: ${COLORS.MELLOW_MELON};
   }
   ::placeholder {
     color: ${COLORS.STRAWBERRY_SMASH};
     font-family: Lato;
     font-size: ${theme.fontSizes.m};
   }
-  border: ${({ borderParams }) => borderParams || border};
+  /* border: ${({ borderParams }) => borderParams || border}; */
   ${inputFuncs}
 `
 

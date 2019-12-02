@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { COLORS } from 'constant'
 import Header from 'shared/Header'
 import Timetables from './Timetables'
+// import ProgramModal from './ProgramModal'
 
 const GradientWrapper = styled.div`
   min-height: 100vh;
@@ -14,6 +15,7 @@ const Mais = ({ path }) => (
   <GradientWrapper>
     <Header path={path} />
     <Timetables />
+    {/* <ProgramModal onClose={() => {}} isModalOpen /> */}
   </GradientWrapper>
 )
 

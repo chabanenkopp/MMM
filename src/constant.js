@@ -60,3 +60,5 @@ export const DEVICE = {
   TABLET: `(max-width: ${SIZE.TABLET})`,
   DESKTOP: `(min-width: ${SIZE.TABLET})`,
 }
+
+export const TEL_NUMBER = `+421 55 6023194`
