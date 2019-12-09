@@ -16,6 +16,8 @@
 		F93BB008467B483CAB3BCE23 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB5E631D7842169C1B9D0E /* CDVStatusBar.m */; };
 		A8304A67366447F5B28B320B /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE05ACFD8084374A5075BA7 /* CDVSplashScreen.m */; };
 		A285892D0C8D4F10BF45A0FE /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D57E2087C2541D3AEF17433 /* CDVViewController+SplashScreen.m */; };
+		A0895A84457246ADB2A5DC2E /* NfcPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C7C976ECAD4D278F27F0B9 /* NfcPlugin.m */; };
+		DE8D286B171B4B8D8AF0F060 /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38317A8FEBFC403ABAD099F2 /* CoreNFC.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,9 @@
 		7D57E2087C2541D3AEF17433 /* CDVViewController+SplashScreen.m */ = {isa = PBXFileReference; name = "CDVViewController+SplashScreen.m"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		3925A114048644108F657077 /* CDVSplashScreen.h */ = {isa = PBXFileReference; name = "CDVSplashScreen.h"; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		07F9EF177D934A8C9FC25A96 /* CDVViewController+SplashScreen.h */ = {isa = PBXFileReference; name = "CDVViewController+SplashScreen.h"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		D2C7C976ECAD4D278F27F0B9 /* NfcPlugin.m */ = {isa = PBXFileReference; name = "NfcPlugin.m"; path = "phonegap-nfc/NfcPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		CF05CF9E3E6E4766BD962291 /* NfcPlugin.h */ = {isa = PBXFileReference; name = "NfcPlugin.h"; path = "phonegap-nfc/NfcPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		38317A8FEBFC403ABAD099F2 /* CoreNFC.framework */ = {isa = PBXFileReference; name = "CoreNFC.framework"; path = "System/Library/Frameworks/CoreNFC.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
+				DE8D286B171B4B8D8AF0F060 /* CoreNFC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +153,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38317A8FEBFC403ABAD099F2 /* CoreNFC.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -179,6 +186,8 @@
 				7D57E2087C2541D3AEF17433 /* CDVViewController+SplashScreen.m */,
 				3925A114048644108F657077 /* CDVSplashScreen.h */,
 				07F9EF177D934A8C9FC25A96 /* CDVViewController+SplashScreen.h */,
+				D2C7C976ECAD4D278F27F0B9 /* NfcPlugin.m */,
+				CF05CF9E3E6E4766BD962291 /* NfcPlugin.h */,
 			);
 			name = Plugins;
 			path = CordovaApp/Plugins;
@@ -310,6 +319,7 @@
 				F93BB008467B483CAB3BCE23 /* CDVStatusBar.m in Sources */,
 				A8304A67366447F5B28B320B /* CDVSplashScreen.m in Sources */,
 				A285892D0C8D4F10BF45A0FE /* CDVViewController+SplashScreen.m in Sources */,
+				A0895A84457246ADB2A5DC2E /* NfcPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

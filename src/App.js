@@ -14,6 +14,7 @@ import LoginPage from 'routes/LoginPage'
 import Mais from 'routes/Mais'
 import Moodle from 'routes/Moodle'
 import Mail from 'routes/Mail'
+import Course from 'routes/Moodle/Course'
 import loading from 'assets/images/loading.svg'
 
 const { MOODLE, MAIL, LOGIN, MAIS } = PATHS
@@ -72,6 +73,7 @@ const App = () => (
                         }}
                       />
                       <Route
+                        exact
                         path={MOODLE}
                         render={({ match }) => {
                           return <Moodle path={match.path} />
@@ -81,6 +83,13 @@ const App = () => (
                         path={MAIL}
                         render={({ match }) => {
                           return <Mail path={match.path} />
+                        }}
+                      />
+                      <Route
+                        path={`${MOODLE}/:id`}
+                        render={({ match }) => {
+                          const { id } = match.params
+                          return <Course id={id} />
                         }}
                       />
                       <Route component={LoginPage} />
