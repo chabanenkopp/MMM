@@ -47,6 +47,7 @@ export const PATHS = {
   MAIS: '/mais',
   MOODLE: '/moodle',
   MAIL: '/mail',
+  COURSELOGIN: '/course-login',
 }
 
 const SIZE = {

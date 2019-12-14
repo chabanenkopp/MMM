@@ -15,9 +15,10 @@ import Mais from 'routes/Mais'
 import Moodle from 'routes/Moodle'
 import Mail from 'routes/Mail'
 import Course from 'routes/Moodle/Course'
+import CourseLogin from 'routes/CourseLogin'
 import loading from 'assets/images/loading.svg'
 
-const { MOODLE, MAIL, LOGIN, MAIS } = PATHS
+const { MOODLE, MAIL, LOGIN, MAIS, COURSELOGIN } = PATHS
 
 const GlobalStyles = createGlobalStyle`
   ${globalStyles}
@@ -90,6 +91,13 @@ const App = () => (
                         render={({ match }) => {
                           const { id } = match.params
                           return <Course id={id} />
+                        }}
+                      />
+                      <Route
+                        path={`${COURSELOGIN}/:id`}
+                        render={({ match }) => {
+                          const { id } = match.params
+                          return <CourseLogin id={id} />
                         }}
                       />
                       <Route component={LoginPage} />

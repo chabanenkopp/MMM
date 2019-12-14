@@ -11,8 +11,8 @@ class AuthServiceProvider extends Component {
   }
 
   componentDidMount() {
-    // this.setState({ currentUser: null })
-    this.setState({ currentUser: true })
+    this.setState({ currentUser: null })
+    // this.setState({ currentUser: true })
   }
 
   render() {

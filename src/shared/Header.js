@@ -40,13 +40,7 @@ const { MOODLE, MAIL, MAIS } = PATHS
 
 const Header = ({ path }) => {
   return (
-    <Box
-      position="absolute"
-      width="100%"
-      bottom="1.8%"
-      minHeight={pxToRem(55)}
-      zIndex="1"
-    >
+    <Box position="absolute" width="100%" bottom="6.8%" zIndex="1">
       <Box
         flex="none"
         justifyContent="space-between"

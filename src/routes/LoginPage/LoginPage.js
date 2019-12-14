@@ -14,10 +14,6 @@ const GradientWrapper = styled.div`
   height: 100vh;
   width: 100%;
   background-color: ${COLORS.DEUTUZIA_WHITE};
-  /* background-image: linear-gradient(
-    ${COLORS.MYTHICAL_ORANGE},
-    ${COLORS.MELLOW_MELON}
-  ); */
 `
 
 const LoginFormContainer = styled(Flex)`

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { space } from 'Theme'
 import { PATHS, COLORS } from 'constant'
-import { transformPath, pxToRem } from 'helpers'
+import { transformPath, getCourseData, pxToRem } from 'helpers'
 import { Text } from 'components/atoms/Typography'
 import { Box, Flex } from 'components/atoms/Layout'
 import UnfoldTextBar from 'components/molecules/UnfoldTextBar'
@@ -14,20 +14,6 @@ import Materials from './Materials'
 import { DATA } from '../data'
 
 const { MOODLE } = PATHS
-
-const getCourseData = (data, id) => {
-  let allCourses
-  const courseId = id.split('-')[1]
-  const studyType = transformPath(id.split('-')[0], true)
-  data.some(({ type, courses }) => {
-    allCourses = courses
-    return type === studyType
-  })
-  return {
-    allCourses,
-    courseId,
-  }
-}
 
 const StyledUL = styled.ul`
   text-indent: -1em;

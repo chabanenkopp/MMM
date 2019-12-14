@@ -45,3 +45,17 @@ export const transformPath = (path, reverse = false) => {
     }
   }
 }
+
+export const getCourseData = (data, id) => {
+  let allCourses
+  const courseId = id.split('-')[1]
+  const studyType = transformPath(id.split('-')[0], true)
+  data.some(({ type, courses }) => {
+    allCourses = courses
+    return type === studyType
+  })
+  return {
+    allCourses,
+    courseId,
+  }
+}
