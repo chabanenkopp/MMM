@@ -8,6 +8,8 @@ import { Text } from 'components/atoms/Typography'
 import { Box, Flex } from 'components/atoms/Layout'
 import UnfoldTextBar from 'components/molecules/UnfoldTextBar'
 import ImageLink from 'components/atoms/ImageLink'
+import MobileMenu from 'shared/MobileMenu'
+import Header from 'shared/Header'
 import listItem from 'assets/images/list-item.svg'
 import returnIcon from 'assets/images/return.svg'
 import Materials from './Materials'
@@ -47,43 +49,69 @@ ListItems.propTypes = {
   type: PropTypes.string.isRequired,
 }
 
-const Course = ({ id }) => {
+const Course = ({ id, isSliderVisible, handleToggleMobileMenuClick }) => {
   const { allCourses, courseId } = getCourseData(DATA, id)
+  const storage = window.localStorage
+  const login = storage.getItem('login')
   return (
-    <Flex flexDirection="column" maxWidth={pxToRem(800)} m="0 auto" px="m">
-      {allCourses.map(({ title, content, ...rest }) => {
-        if (rest.id === courseId) {
-          return (
-            <Box key={title}>
-              <Text key={title} fontSize="xl" color="black" mt="xl" ml="s">
-                {title}
-              </Text>
-              <Box mt="l" ml="s">
-                <ImageLink
-                  img={returnIcon}
-                  maxHeight={pxToRem(30)}
-                  to={MOODLE}
-                />
-              </Box>
-              {content.map(({ week, links }) => (
-                <Box mt="l" key={week}>
-                  <UnfoldTextBar
-                    title={week}
-                    component={<Materials links={links} />}
-                  />
-                </Box>
-              ))}
-            </Box>
-          )
+    <div>
+      <Header
+        isVisible={isSliderVisible}
+        onMobileMenuButtonClick={handleToggleMobileMenuClick}
+        login={login}
+        mobileMenuComp={
+          <MobileMenu
+            isVisible={isSliderVisible}
+            onClick={handleToggleMobileMenuClick}
+          />
         }
-        return null
-      })}
-    </Flex>
+      />
+      <Flex
+        flexDirection="column"
+        maxWidth={pxToRem(800)}
+        bg={COLORS.DEUTUZIA_WHITE}
+        m="0 auto"
+        px="m"
+      >
+        {allCourses.map(({ title, content, ...rest }) => {
+          if (rest.id === courseId) {
+            return (
+              <Box key={title}>
+                <Text key={title} fontSize="xl" color="black" mt="s" ml="s">
+                  {title}
+                </Text>
+                <Flex alignItems="center" mt="l" ml="s">
+                  <ImageLink
+                    img={returnIcon}
+                    maxHeight={pxToRem(30)}
+                    to={MOODLE}
+                  />
+                  <Text color={COLORS.PERCEPTIBLE_AT_A_GLANCE} ml="s">
+                    All Studies{' '}
+                  </Text>
+                </Flex>
+                {content.map(({ week, links }) => (
+                  <Box mt="l" key={week}>
+                    <UnfoldTextBar
+                      title={week}
+                      component={<Materials links={links} />}
+                    />
+                  </Box>
+                ))}
+              </Box>
+            )
+          }
+          return null
+        })}
+      </Flex>
+    </div>
   )
 }
 
 Course.propTypes = {
   id: PropTypes.string.isRequired,
+  isSliderVisible: PropTypes.bool,
+  handleToggleMobileMenuClick: PropTypes.func,
 }
 
 export default Course

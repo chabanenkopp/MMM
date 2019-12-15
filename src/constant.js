@@ -38,6 +38,7 @@ export const COLORS = {
   CIRCUS: '#ff6332',
   DEUTUZIA_WHITE: '#f7fbfc',
   WHITE_SMOKE: 'whitesmoke',
+  BLACK: 'black',
   PERCEPTIBLE_AT_A_GLANCE: '#22bef0',
   PERCEPTIBLE_THROUGH_CLOSE_OBSERVATION: '#7adcec',
 }

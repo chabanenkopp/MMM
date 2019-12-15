@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { Switch, Route } from 'react-router-dom'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
@@ -16,6 +16,7 @@ import Moodle from 'routes/Moodle'
 import Mail from 'routes/Mail'
 import Course from 'routes/Moodle/Course'
 import CourseLogin from 'routes/CourseLogin'
+import ReadScreen from 'routes/Mail/ReadScreen'
 import loading from 'assets/images/loading.svg'
 
 const { MOODLE, MAIL, LOGIN, MAIS, COURSELOGIN } = PATHS
@@ -30,87 +31,138 @@ const AnimationWrapper = styled(Flex)`
 const maisTimetableService = new MaisTimetableService()
 const authService = new AuthService()
 
-const App = () => (
-  <ThemeProvider theme={theme}>
-    <AuthServiceProvider>
-      <CheckUserServiceProvider value={authService}>
-        <MaisTimetableServiceProvider value={maisTimetableService}>
-          <AuthServiceConsumer>
-            {({ currentUser }) => {
-              if (currentUser === false)
+const App = () => {
+  const [isSliderVisible, setIsSliderVisible] = useState(false)
+  return (
+    <ThemeProvider theme={theme}>
+      <AuthServiceProvider>
+        <CheckUserServiceProvider value={authService}>
+          <MaisTimetableServiceProvider value={maisTimetableService}>
+            <AuthServiceConsumer>
+              {({ currentUser }) => {
+                if (currentUser === false)
+                  return (
+                    <React.Fragment>
+                      <GlobalStyles />
+                      <AnimationWrapper
+                        justifyContent="center"
+                        alignItems="center"
+                        minHeight="100vh"
+                        minWidth="100%"
+                      >
+                        <img src={loading} alt="loading" />
+                      </AnimationWrapper>
+                    </React.Fragment>
+                  )
                 return (
                   <React.Fragment>
+                    <Helmet>
+                      <link
+                        href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:500,600,700&display=swap"
+                        rel="stylesheet"
+                      />
+                      {/* <link rel="icon" href={favicon} /> */}
+                    </Helmet>
                     <GlobalStyles />
-                    <AnimationWrapper
-                      justifyContent="center"
-                      alignItems="center"
-                      minHeight="100vh"
-                      minWidth="100%"
-                    >
-                      <img src={loading} alt="loading" />
-                    </AnimationWrapper>
+                    {currentUser === null ? (
+                      <Switch>
+                        <Route path={LOGIN} component={LoginPage} />
+                      </Switch>
+                    ) : (
+                      <Switch>
+                        <Route
+                          path={MAIS}
+                          render={({ match }) => {
+                            return (
+                              <Mais
+                                path={match.path}
+                                isSliderVisible={isSliderVisible}
+                                handleToggleMobileMenuClick={() =>
+                                  setIsSliderVisible(!isSliderVisible)
+                                }
+                              />
+                            )
+                          }}
+                        />
+                        <Route
+                          exact
+                          path={MOODLE}
+                          render={({ match }) => {
+                            return (
+                              <Moodle
+                                path={match.path}
+                                isSliderVisible={isSliderVisible}
+                                handleToggleMobileMenuClick={() =>
+                                  setIsSliderVisible(!isSliderVisible)
+                                }
+                              />
+                            )
+                          }}
+                        />
+                        <Route
+                          exact
+                          path={MAIL}
+                          render={({ match }) => {
+                            return (
+                              <Mail
+                                path={match.path}
+                                isSliderVisible={isSliderVisible}
+                                handleToggleMobileMenuClick={() =>
+                                  setIsSliderVisible(!isSliderVisible)
+                                }
+                              />
+                            )
+                          }}
+                        />
+                        <Route
+                          path={`${MOODLE}/:id`}
+                          render={({ match }) => {
+                            const { id } = match.params
+                            return (
+                              <Course
+                                id={id}
+                                isSliderVisible={isSliderVisible}
+                                handleToggleMobileMenuClick={() =>
+                                  setIsSliderVisible(!isSliderVisible)
+                                }
+                              />
+                            )
+                          }}
+                        />
+                        <Route
+                          path={`${MAIL}/:id`}
+                          render={({ match }) => {
+                            const { id } = match.params
+                            return (
+                              <ReadScreen
+                                id={id}
+                                isSliderVisible={isSliderVisible}
+                                handleToggleMobileMenuClick={() =>
+                                  setIsSliderVisible(!isSliderVisible)
+                                }
+                              />
+                            )
+                          }}
+                        />
+                        <Route
+                          path={`${COURSELOGIN}/:id`}
+                          render={({ match }) => {
+                            const { id } = match.params
+                            return <CourseLogin id={id} />
+                          }}
+                        />
+                        <Route component={LoginPage} />
+                      </Switch>
+                    )}
                   </React.Fragment>
                 )
-              return (
-                <React.Fragment>
-                  <Helmet>
-                    <link
-                      href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:500,600,700&display=swap"
-                      rel="stylesheet"
-                    />
-                    {/* <link rel="icon" href={favicon} /> */}
-                  </Helmet>
-                  <GlobalStyles />
-                  {currentUser === null ? (
-                    <Switch>
-                      <Route path={LOGIN} component={LoginPage} />
-                    </Switch>
-                  ) : (
-                    <Switch>
-                      <Route
-                        path={MAIS}
-                        render={({ match }) => {
-                          return <Mais path={match.path} />
-                        }}
-                      />
-                      <Route
-                        exact
-                        path={MOODLE}
-                        render={({ match }) => {
-                          return <Moodle path={match.path} />
-                        }}
-                      />
-                      <Route
-                        path={MAIL}
-                        render={({ match }) => {
-                          return <Mail path={match.path} />
-                        }}
-                      />
-                      <Route
-                        path={`${MOODLE}/:id`}
-                        render={({ match }) => {
-                          const { id } = match.params
-                          return <Course id={id} />
-                        }}
-                      />
-                      <Route
-                        path={`${COURSELOGIN}/:id`}
-                        render={({ match }) => {
-                          const { id } = match.params
-                          return <CourseLogin id={id} />
-                        }}
-                      />
-                      <Route component={LoginPage} />
-                    </Switch>
-                  )}
-                </React.Fragment>
-              )
-            }}
-          </AuthServiceConsumer>
-        </MaisTimetableServiceProvider>
-      </CheckUserServiceProvider>
-    </AuthServiceProvider>
-  </ThemeProvider>
-)
+              }}
+            </AuthServiceConsumer>
+          </MaisTimetableServiceProvider>
+        </CheckUserServiceProvider>
+      </AuthServiceProvider>
+    </ThemeProvider>
+  )
+}
 
 export default App

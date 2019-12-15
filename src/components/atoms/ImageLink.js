@@ -9,7 +9,7 @@ const LogoElement = styled.img`
   max-height: ${pxToRem(50)};
   ${({ maxHeight }) => maxHeight && `max-height: ${maxHeight}`};
   ${({ height }) => height && `height: ${height}`};
-  margin-bottom: ${theme.space.s};
+  /* margin-bottom: ${theme.space.s}; */
   display: block;
 `
 

@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { COLORS } from 'constant'
+import BottomNavbar from 'shared/BottomNavbar'
+import MobileMenu from 'shared/MobileMenu'
 import Header from 'shared/Header'
 import CourseList from './CourseList'
 
@@ -11,10 +13,23 @@ const GradientWrapper = styled.div`
   background-color: ${COLORS.DEUTUZIA_WHITE};
 `
 
-const Moodle = ({ path }) => {
+const Moodle = ({ path, isSliderVisible, handleToggleMobileMenuClick }) => {
+  const storage = window.localStorage
+  const login = storage.getItem('login')
   return (
     <GradientWrapper>
-      <Header path={path} />
+      <Header
+        isVisible={isSliderVisible}
+        onMobileMenuButtonClick={handleToggleMobileMenuClick}
+        login={login}
+        mobileMenuComp={
+          <MobileMenu
+            isVisible={isSliderVisible}
+            onClick={handleToggleMobileMenuClick}
+          />
+        }
+      />
+      <BottomNavbar path={path} />
       <CourseList />
     </GradientWrapper>
   )
@@ -22,6 +37,8 @@ const Moodle = ({ path }) => {
 
 Moodle.propTypes = {
   path: PropTypes.string.isRequired,
+  isSliderVisible: PropTypes.bool,
+  handleToggleMobileMenuClick: PropTypes.func,
 }
 
 export default Moodle
