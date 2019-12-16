@@ -131,7 +131,8 @@ class Mail extends React.Component {
                   <Box
                     className="handle"
                     maxWidth="100vw"
-                    onClick={() => push(`${MAIL}/${id}`)}
+                    onTouchEnd={() => push(`${MAIL}/${id}`)}
+                    // onClick={() => push(`${MAIL}/${id}`)}
                   >
                     <MovableBox height={pxToRem(140)}>
                       <Grid gridTemplateColumns="1fr 10fr">
@@ -149,7 +150,7 @@ class Mail extends React.Component {
                             >
                               {senderName.length < 19
                                 ? senderName
-                                : `${senderName.substr(0, 20)}...`}
+                                : `${senderName.substr(0, 16)}...`}
                             </Text>
                             <Text
                               fontSize="xl"
