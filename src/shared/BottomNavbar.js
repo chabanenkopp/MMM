@@ -28,7 +28,8 @@ const LinksContainer = styled(Flex)`
   height: ${pxToRem(50)};
   margin: 0 auto;
   /* margin-top: ${pxToRem(10)}; */
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
+  margin-top: ${pxToRem(25)};
   border-radius: ${pxToRem(40)};
   background-color: ${transparentize(
     0.05,
@@ -50,6 +51,7 @@ const BottomNavbar = ({ path }) => {
         height={pxToRem(90)}
         width="100%"
         bg={COLORS.DEUTUZIA_WHITE}
+        bottom="0"
       >
         <LinksContainer>
           <BorderBottom targetPath={MAIS} currentPath={path}>
