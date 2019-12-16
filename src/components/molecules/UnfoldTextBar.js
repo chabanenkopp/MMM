@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { COLORS } from 'constant'
-import { theme, radius, space } from 'Theme'
+import { theme, radius, space, getTransition } from 'Theme'
 import { pxToRem } from 'helpers'
 import { Flex, Box } from 'components/atoms/Layout'
 import { Text } from 'components/atoms/Typography'
+import Transition from 'components/atoms/Transition'
 import arrow from 'assets/images/list-item.svg'
+
+const TRANSITION_TIMEOUT = 150
 
 const getShadow = (color, isVisible) =>
   color && isVisible && `box-shadow: rgba(0,0,0,0.08) 0px 20px 40px 5px;`
@@ -54,6 +57,14 @@ const TitleWrapper = styled(Box)`
   background-color: ${COLORS.COTTON_BALL};
 `
 
+const FoldedWrapper = styled(Box)`
+  opacity: 0;
+  transition: ${getTransition('opacity')};
+  ${({ state }) =>
+    state === Transition.STATE.ENTERING ||
+    (state === Transition.STATE.ENTERED && `opacity: 1;`)}
+`
+
 const UnfoldTextBar = ({
   title,
   component: List,
@@ -79,11 +90,18 @@ const UnfoldTextBar = ({
         </TitleWrapper>
         <StyledBox src={arrow} isClicked={isClicked} />
       </ButtonLong>
-      {isClicked ? (
-        <Box py="l" px="s">
-          {List}
-        </Box>
-      ) : null}
+      <Transition
+        in={isClicked}
+        timeout={TRANSITION_TIMEOUT}
+        mountOnEnter
+        unmountOnExit
+      >
+        {(state) => (
+          <FoldedWrapper state={state} py="l" px="s">
+            {List}
+          </FoldedWrapper>
+        )}
+      </Transition>
     </Flex>
   )
 }
