@@ -1,13 +1,15 @@
 import React from 'react'
+import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { Link as ReactLink } from 'react-router-dom'
-import styled from 'styled-components'
 import { fontWeights, getTransition } from 'Theme'
 import { COLORS, PATHS } from 'constant'
 import { pxToRem } from 'helpers'
 import { Flex, Box } from 'components/atoms/Layout'
 import { Text } from 'components/atoms/Typography'
 import Link from 'components/atoms/Link'
+import withAuthService from 'hoc/withAuthService'
+import compose from 'utils'
 
 const { MAIS } = PATHS
 
@@ -28,7 +30,7 @@ const MobileMenuContainer = styled(Box)`
       : 'transform: translateX(100%); opacity: 0'};
 `
 
-const MobileMenu = ({ isVisible, onClick }) => {
+const MobileMenu = ({ isVisible, onClick, destroySession }) => {
   return (
     <React.Fragment>
       <MobileMenuContainer isVisible={isVisible}>
@@ -37,7 +39,10 @@ const MobileMenu = ({ isVisible, onClick }) => {
             <Box pt={pxToRem(50)} ml="l">
               <Link
                 to={MAIS}
-                onClick={() => onClick()}
+                onClick={() => {
+                  onClick()
+                  destroySession()
+                }}
                 as={ReactLink}
                 fontSize="xxxl"
                 fontWeight={`${fontWeights.thin} !important`}
@@ -47,23 +52,6 @@ const MobileMenu = ({ isVisible, onClick }) => {
                 <Text fontSize="xxl">LOGOUT</Text>
               </Link>
             </Box>
-            {/* <Box pt={pxToRem(50)} ml="l">
-              <Link
-                to={MOODLE}
-                onClick={() => onClick()}
-                as={ReactLink}
-                fontSize="xxl"
-                fontWeight={`${fontWeights.thin} !important`}
-                px="l"
-                py="m"
-              >
-                <Text fontSize="xxl">
-                  <ChangeColor pathName={pathName} targetPath={MOODLE}>
-                    SHIT
-                  </ChangeColor>
-                </Text>
-              </Link>
-            </Box> */}
           </Flex>
         </Box>
       </MobileMenuContainer>
@@ -74,6 +62,7 @@ const MobileMenu = ({ isVisible, onClick }) => {
 MobileMenu.propTypes = {
   isVisible: PropTypes.bool.isRequired,
   onClick: PropTypes.func,
+  destroySession: PropTypes.func.isRequired,
 }
 
-export default MobileMenu
+export default compose(withAuthService)(MobileMenu)

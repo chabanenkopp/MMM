@@ -32,7 +32,6 @@ const Mais = ({ path, isSliderVisible, handleToggleMobileMenuClick }) => {
       />
       <BottomNavbar path={path} />
       <Timetables />
-      {/* <ProgramModal onClose={() => {}} isModalOpen /> */}
     </GradientWrapper>
   )
 }

@@ -69,6 +69,7 @@ const Course = ({ id, isSliderVisible, handleToggleMobileMenuClick }) => {
       <Flex
         flexDirection="column"
         maxWidth={pxToRem(800)}
+        minHeight="100vh"
         bg={COLORS.DEUTUZIA_WHITE}
         m="0 auto"
         px="m"

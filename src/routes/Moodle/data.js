@@ -65,9 +65,9 @@ export const DATA = [
       {
         id: '4',
         title: 'Používateľské rozhrania programových systémov',
-        isLocked: false,
+        isLocked: true,
       },
-      { id: '5', title: 'Asembler', isLocked: false },
+      { id: '5', title: 'Asembler', isLocked: true },
     ],
   },
   {
@@ -99,7 +99,7 @@ export const DATA = [
       {
         id: '14',
         title: 'Inteligentné systémy v informatike',
-        isLocked: true,
+        isLocked: false,
         content: [
           {
             week: '23 september - 29 september',
