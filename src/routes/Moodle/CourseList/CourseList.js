@@ -8,10 +8,10 @@ import { pxToRem, transformPath } from 'helpers'
 import { Flex, Box } from 'components/atoms/Layout'
 import { Text } from 'components/atoms/Typography'
 import UnfoldTextBar from 'components/molecules/UnfoldTextBar'
-// import ImageLink from 'components/atoms/ImageLink'
 import listItem from 'assets/images/list-item.svg'
+import Loading from 'components/atoms/Loading'
+import { MoodleService } from 'services/moodle-service'
 import lock from 'assets/images/lock.svg'
-import { DATA } from '../data'
 
 const { MOODLE, COURSELOGIN } = PATHS
 
@@ -57,24 +57,50 @@ ListItems.propTypes = {
   type: PropTypes.string.isRequired,
 }
 
-const CourseList = ({ history: { push } }) => (
-  <Flex flexDirection="column" maxWidth={pxToRem(800)} m="0 auto" px="m">
-    <Box mb="xl">
-      {DATA.map(({ type, courses }) => {
-        return (
-          <Box data-aos="fade-up" mt="l" key={type}>
-            <UnfoldTextBar
-              title={type}
-              component={
-                <ListItems courses={courses} onClick={push} type={type} />
-              }
-            />
-          </Box>
-        )
-      })}
-    </Box>
-  </Flex>
-)
+const moodleService = new MoodleService()
+
+class CourseList extends React.Component {
+  state = {
+    studies: [],
+    isLoading: false,
+  }
+
+  componentDidMount() {
+    this.setState({ isLoading: true })
+    const { getStudyList } = moodleService
+    getStudyList()
+      .then((resp) => {
+        this.setState({ isLoading: false, studies: resp })
+      })
+      .catch((err) => console.log(err))
+  }
+
+  render() {
+    const {
+      history: { push },
+    } = this.props
+    const { isLoading, studies } = this.state
+    if (isLoading) return <Loading />
+    return (
+      <Flex flexDirection="column" maxWidth={pxToRem(800)} m="0 auto" px="m">
+        <Box mb="xl">
+          {studies.map(({ type, courses }) => {
+            return (
+              <Box data-aos="fade-up" mt="l" key={type}>
+                <UnfoldTextBar
+                  title={type}
+                  component={
+                    <ListItems courses={courses} onClick={push} type={type} />
+                  }
+                />
+              </Box>
+            )
+          })}
+        </Box>
+      </Flex>
+    )
+  }
+}
 
 CourseList.propTypes = {
   history: PropTypes.object.isRequired,

@@ -54,7 +54,7 @@ const CourseLogin = ({ id }) => {
           })}
         </CourseDataBlock>
         <Box>
-          <LoginForm />
+          <LoginForm id={id} />
         </Box>
       </Flex>
     </GradientWrapper>

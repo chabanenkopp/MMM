@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 import { Box, Flex } from 'components/atoms/Layout'
 import { radius, space } from 'Theme'
-import { COLORS } from 'constant'
+import { COLORS, PATHS } from 'constant'
 import { pxToRem } from 'helpers'
 import Input from 'components/atoms/Input'
 import Button from 'components/atoms/Button'
+
+const { MOODLE } = PATHS
 
 const { PASSWORD } = { PASSWORD: 'password' }
 
@@ -24,8 +28,12 @@ class LoginForm extends Component {
   handleSubmitForm = (e) => {
     e.preventDefault()
     const { password } = this.state
-    if (password !== '') {
-      console.log('success')
+    const {
+      history: { push },
+      id,
+    } = this.props
+    if (password !== '' && password === 'zapocet') {
+      push(`${MOODLE}/${id}`)
     }
   }
 
@@ -71,4 +79,9 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm
+LoginForm.propTypes = {
+  history: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
+}
+
+export default withRouter(LoginForm)
