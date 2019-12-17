@@ -16,6 +16,7 @@ import Header from 'shared/Header'
 import Loading from 'components/atoms/Loading'
 import { EmailListService } from 'services/email-service'
 import cancel from 'assets/images/cancel.svg'
+import { transformTimestamp } from './helpers'
 
 const { MAIL } = PATHS
 
@@ -26,6 +27,7 @@ const GradientWrapper = styled.div`
   width: 100%;
   overflow: hidden;
   background-color: ${COLORS.DEUTUZIA_WHITE};
+  overflow-y: scroll;
 `
 
 const MovableBox = styled(Box)`
@@ -51,11 +53,6 @@ const UnreadMessageIcon = styled.div`
       : `background-color: ${COLORS.PERCEPTIBLE_AT_A_GLANCE}`};
   border-radius: 50%;
 `
-
-const transformTimestamp = (timestamp) => {
-  const timeArr = timestamp.split(' ')
-  return `${timeArr[0]} ${timeArr[1]} ${timeArr[2]}`
-}
 
 const emailListService = new EmailListService()
 class Mail extends React.Component {
@@ -114,13 +111,14 @@ class Mail extends React.Component {
             return (
               <Box
                 bg={transparentize(0.2, COLORS.RED_ORANGE_JUICE)}
-                height={pxToRem(140)}
+                height={pxToRem(150)}
+                maxHeight={pxToRem(150)}
                 key={id}
               >
                 <Draggable
                   axis="x"
-                  handle=".handle"
-                  defaultPosition={{ x: 0, y: 0 }}
+                  // handle=".handle"
+                  // defaultPosition={{ x: 0, y: 0 }}
                   position={null}
                   onStart={this.handleStart}
                   onDrag={this.handleDrag}
@@ -129,12 +127,11 @@ class Mail extends React.Component {
                   bounds={BOUNDS}
                 >
                   <Box
-                    className="handle"
+                    // className="handle"
                     maxWidth="100vw"
-                    onTouchEnd={() => push(`${MAIL}/${id}`)}
-                    // onClick={() => push(`${MAIL}/${id}`)}
+                    onClick={() => push(`${MAIL}/${id}`)}
                   >
-                    <MovableBox height={pxToRem(140)}>
+                    <MovableBox height={pxToRem(150)} maxHeight={pxToRem(150)}>
                       <Grid gridTemplateColumns="1fr 10fr">
                         <Flex justifyContent="center" mt={pxToRem(22)}>
                           <UnreadMessageIcon isRead={isRead} />

@@ -7,10 +7,9 @@ import { COLORS, PATHS } from 'constant'
 import { pxToRem } from 'helpers'
 import { Flex, Box } from 'components/atoms/Layout'
 import { Text } from 'components/atoms/Typography'
-import ChangeColor from 'components/atoms/ChangeFontColorByPathName'
 import Link from 'components/atoms/Link'
 
-const { MAIS, MOODLE } = PATHS
+const { MAIS } = PATHS
 
 const MobileMenuContainer = styled(Box)`
   background-color: ${COLORS.WHITE};
@@ -29,7 +28,7 @@ const MobileMenuContainer = styled(Box)`
       : 'transform: translateX(100%); opacity: 0'};
 `
 
-const MobileMenu = ({ isVisible, onClick, pathName }) => {
+const MobileMenu = ({ isVisible, onClick }) => {
   return (
     <React.Fragment>
       <MobileMenuContainer isVisible={isVisible}>
@@ -45,14 +44,10 @@ const MobileMenu = ({ isVisible, onClick, pathName }) => {
                 px="l"
                 py="m"
               >
-                <Text fontSize="xxl">
-                  <ChangeColor pathName={pathName} targetPath={MAIS}>
-                    FUCK
-                  </ChangeColor>
-                </Text>
+                <Text fontSize="xxl">LOGOUT</Text>
               </Link>
             </Box>
-            <Box pt={pxToRem(50)} ml="l">
+            {/* <Box pt={pxToRem(50)} ml="l">
               <Link
                 to={MOODLE}
                 onClick={() => onClick()}
@@ -68,7 +63,7 @@ const MobileMenu = ({ isVisible, onClick, pathName }) => {
                   </ChangeColor>
                 </Text>
               </Link>
-            </Box>
+            </Box> */}
           </Flex>
         </Box>
       </MobileMenuContainer>
@@ -78,7 +73,6 @@ const MobileMenu = ({ isVisible, onClick, pathName }) => {
 
 MobileMenu.propTypes = {
   isVisible: PropTypes.bool.isRequired,
-  pathName: PropTypes.string,
   onClick: PropTypes.func,
 }
 
